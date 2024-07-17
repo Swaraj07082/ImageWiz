@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ImageIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -47,7 +48,7 @@ export default function Navbar() {
                 className="rounded-full border border-primary-foreground/50 w-10 h-10"
                 onClick={() => setShowUserMenu(!showUserMenu)}
               >
-                <img
+                <Image
                   src="/placeholder.svg"
                   width="40"
                   height="40"
@@ -61,7 +62,7 @@ export default function Navbar() {
                   <DialogContent className="w-56">
                     <DropdownMenuContent>
                       <div className="flex items-center gap-2 p-2">
-                        <img
+                        <Image
                           src="/placeholder.svg"
                           width="32"
                           height="32"
