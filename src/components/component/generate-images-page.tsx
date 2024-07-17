@@ -56,18 +56,19 @@ export function GenerateImagesPage() {
               </div>
             </div>
             <div>
-              <div className="bg-muted rounded-lg overflow-hidden shadow-lg">
+              <div className="bg-muted rounded-lg  overflow-hidden shadow-lg">
                 {loading ? (
                   <div className="flex items-center justify-center h-96">
                     <div className="loader">Loading...</div>
                   </div>
                 ) : (
-                  <img
+                  <Image
                     src={url}
                     alt="Generated Image"
                     width={600}
                     height={400}
-                    className="w-full h-auto"
+                    // fill
+                    className="w-full h-auto object-cover"
                   />
                 )}
               </div>

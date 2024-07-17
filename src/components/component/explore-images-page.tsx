@@ -32,7 +32,7 @@ export function ExploreImagesPage() {
   const [userImages, setUserImages] = useState(6);
   const [Category, setCategory] = useState<CategoryType[]>(Animals);
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: any) => {
     setSelectedImage(image);
     setShowDialog(true);
   };
@@ -233,7 +233,7 @@ export function ExploreImagesPage() {
   );
 }
 
-function DownloadIcon(props) {
+function DownloadIcon(props: any) {
   return (
     <svg
       {...props}
@@ -254,7 +254,7 @@ function DownloadIcon(props) {
   );
 }
 
-function HeartIcon(props) {
+function HeartIcon(props: any) {
   return (
     <svg
       {...props}
@@ -273,7 +273,7 @@ function HeartIcon(props) {
   );
 }
 
-function ImageIcon(props) {
+function ImageIcon(props: any) {
   return (
     <svg
       {...props}
@@ -294,7 +294,7 @@ function ImageIcon(props) {
   );
 }
 
-function XIcon(props) {
+function XIcon(props: any) {
   return (
     <svg
       {...props}
