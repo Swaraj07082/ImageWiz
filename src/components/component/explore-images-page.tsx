@@ -184,7 +184,7 @@ export function ExploreImagesPage() {
       {showDialog && (
         <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
           <DialogContent className="sm:max-w-[400px]">
-            <img
+            <Image
               src="/placeholder.svg"
               alt="Selected Image"
               width={600}
