@@ -12,19 +12,6 @@ export default function SigninwithGoogle() {
   const [user, setuser] = useAuthState(auth);
   const provider = new GoogleAuthProvider();
   async function googleLogin() {
-    // signInWithPopup(auth, provider).then(async (result) => {
-    //   console.log(result);
-    //   setuserDetails(result.user);
-    //   if (result.user) {
-    //     await setDoc(doc(db, "Users", result.user.uid), {
-    //       email: result.user.email,
-    //       username: result.user.displayName,
-    //       photo: result.user.photoURL,
-    //     });
-    //     alert("signed in successfully");
-    //     window.location.href = "/profile";
-    //   }
-    // });
     const result = await signInWithPopup(auth, provider);
   }
   useEffect(() => {

@@ -142,7 +142,7 @@ export default function Navbar() {
                 </DialogTrigger>
               </Dialog> */}
               {/* )} */}
-              <SigninwithGoogle/>
+              <SigninwithGoogle />
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function Navbar() {
   );
 }
 
-function AppleIcon(props) {
+function AppleIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -171,7 +171,7 @@ function AppleIcon(props) {
   );
 }
 
-function ChromeIcon(props) {
+function ChromeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -194,7 +194,7 @@ function ChromeIcon(props) {
   );
 }
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
