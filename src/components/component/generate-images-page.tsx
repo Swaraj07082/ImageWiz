@@ -69,6 +69,8 @@ export function GenerateImagesPage() {
                     height={400}
                     // fill
                     className="w-full h-auto object-cover"
+                    priority
+                    loading="eager"
                   />
                 )}
               </div>

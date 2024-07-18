@@ -29,7 +29,7 @@ interface CategoryType {
 export function ExploreImagesPage() {
   const [liked, setLiked] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string>("");
   const [userImages, setUserImages] = useState(6);
   const [animals, setanimals] = useState([]);
   const [Category, setCategory] = useState<CategoryType[]>(animals);
@@ -40,13 +40,14 @@ export function ExploreImagesPage() {
   const [scifi, setscifi] = useState([]);
   const [cars, setcars] = useState([]);
 
-  const handleImageClick = (image: any) => {
+  const handleImageClick = (image: string) => {
+    console.log(image);
     setSelectedImage(image);
     setShowDialog(true);
   };
   const handleCloseDialog = () => {
     setShowDialog(false);
-    setSelectedImage(null);
+    setSelectedImage("");
   };
   const handleAvatarClick = () => {
     setShowDialog((prevState) => !prevState);
@@ -119,6 +120,8 @@ export function ExploreImagesPage() {
   console.log(landscapes);
 
   console.log(Category);
+
+  console.log(selectedImage);
 
   return (
     <div className="flex flex-col h-screen">
@@ -210,8 +213,8 @@ export function ExploreImagesPage() {
             {Category.map((Category, index) => (
               <div
                 key={index}
+                onClick={() => handleImageClick(Category.url)}
                 className="bg-muted h-48 w-48 rounded-lg shadow-lg relative  overflow-hidden cursor-pointer"
-                onClick={() => handleImageClick("/placeholder.svg")}
               >
                 <Image
                   src={Category.url}
@@ -262,14 +265,16 @@ export function ExploreImagesPage() {
         <Dialog open={showDialog} onOpenChange={handleCloseDialog}>
           <DialogContent className="sm:max-w-[400px]">
             <Image
-              src="/placeholder.svg"
+              src={selectedImage}
               alt="Selected Image"
               width={600}
               height={400}
               className="w-full h-auto rounded-lg"
+              priority
+              loading="eager"
             />
             <div className="mt-4">
-              <h3 className="text-lg font-medium">Selected Image</h3>
+              <h3 className="text-lg font-medium">Selected image</h3>
               <p className="text-muted-foreground">
                 A beautiful AI-generated image.
               </p>
