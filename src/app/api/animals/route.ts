@@ -1,12 +1,8 @@
 import { kv } from "@vercel/kv";
-import type { NextApiRequest, NextApiResponse } from "next";
+
 import { NextRequest, NextResponse } from "next/server";
 
-// Handler to retrieve animals data
-const getAnimals = async (
-  req: NextRequest | Request,
-  res: NextResponse | Response
-) => {
+export const GET = async () => {
   try {
     const animalsData = await kv.get("animals");
     if (animalsData) {
@@ -21,11 +17,7 @@ const getAnimals = async (
   }
 };
 
-// Handler to store animals data
-const postAnimals = async (
-  req: NextRequest | Request,
-  res: NextResponse | Response
-) => {
+export const POST = async () => {
   const animals = [
     {
       name: "pig",
@@ -69,17 +61,3 @@ const postAnimals = async (
     return NextResponse.json({ error: "Failed to store animals data" });
   }
 };
-
-export default async function handler(
-  req: NextRequest | Request,
-  res: NextResponse | Response
-) {
-  if (req.method === "GET") {
-    await getAnimals(req, res);
-  } else if (req.method === "POST") {
-    await postAnimals(req, res);
-    // } else {
-    //   res.setHeader('Allow', ['GET', 'POST']);
-    //   res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-}
