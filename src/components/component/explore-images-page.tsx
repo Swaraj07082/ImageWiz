@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -12,14 +12,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import Animals from "../../../public/Animals.json";
-import Anime from "../../../public/Anime.json";
+// import Animals from "../../../public/Animals.json";
+// import Anime from "../../../public/Anime.json";
+// import Image from "next/image";
+// import Fashion from "../../../public/Fashion.json";
+// import Food from "../../../public/Food.json";
+// import SciFi from "../../../public/Sci-Fi.json";
+// import Landscapes from "../../../public/Landscapes.json";
+// import Cars from "../../../public/Cars.json";
 import Image from "next/image";
-import Fashion from "../../../public/Fashion.json";
-import Food from "../../../public/Food.json";
-import SciFi from "../../../public/Sci-Fi.json";
-import Landscapes from "../../../public/Landscapes.json";
-import Cars from "../../../public/Cars.json";
 
 interface CategoryType {
   name: string;
@@ -30,7 +31,14 @@ export function ExploreImagesPage() {
   const [showDialog, setShowDialog] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [userImages, setUserImages] = useState(6);
-  const [Category, setCategory] = useState<CategoryType[]>(Animals);
+  const [animals, setanimals] = useState([]);
+  const [Category, setCategory] = useState<CategoryType[]>(animals);
+  const [anime, setanime] = useState([]);
+  const [food, setfood] = useState([]);
+  const [fashion, setfashion] = useState([]);
+  const [landscapes, setlandscapes] = useState([]);
+  const [scifi, setscifi] = useState([]);
+  const [cars, setcars] = useState([]);
 
   const handleImageClick = (image: any) => {
     setSelectedImage(image);
@@ -43,6 +51,75 @@ export function ExploreImagesPage() {
   const handleAvatarClick = () => {
     setShowDialog((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    const getanimals = async () => {
+      const response = await fetch("/api/animals");
+      const data = await response.json();
+      setanimals(data);
+    };
+
+    getanimals();
+
+    const getanime = async () => {
+      const response = await fetch("/api/anime");
+      const data = await response.json();
+      setanime(data);
+    };
+
+    getanime();
+
+    const getfood = async () => {
+      const response = await fetch("/api/food");
+      const data = await response.json();
+      setfood(data);
+    };
+
+    getfood();
+
+    const getscifi = async () => {
+      const response = await fetch("/api/scifi");
+      const data = await response.json();
+      setscifi(data);
+    };
+
+    getscifi();
+
+    const getlandscapes = async () => {
+      const response = await fetch("/api/landscapes");
+      const data = await response.json();
+      setlandscapes(data);
+    };
+
+    getlandscapes();
+
+    const getfashion = async () => {
+      const response = await fetch("/api/fashion");
+      const data = await response.json();
+      setfashion(data);
+    };
+
+    getfashion();
+
+    const getcars = async () => {
+      const response = await fetch("/api/cars");
+      const data = await response.json();
+      setcars(data);
+    };
+
+    getcars();
+  }, []);
+
+  console.log(animals);
+  console.log(anime);
+  console.log(food);
+  console.log(cars);
+  console.log(fashion);
+  console.log(scifi);
+  console.log(landscapes);
+
+  console.log(Category);
+
   return (
     <div className="flex flex-col h-screen">
       <main className="flex-1 bg-background">
@@ -63,7 +140,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2"
                       onClick={(e) => {
-                        setCategory(Animals);
+                        setCategory(animals);
                       }}
                     >
                       Animals
@@ -72,7 +149,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2"
                       onClick={(e) => {
-                        setCategory(Anime);
+                        setCategory(anime);
                       }}
                     >
                       Anime
@@ -81,7 +158,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2"
                       onClick={(e) => {
-                        setCategory(Fashion);
+                        setCategory(fashion);
                       }}
                     >
                       Fashion
@@ -90,7 +167,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2"
                       onClick={(e) => {
-                        setCategory(Food);
+                        setCategory(food);
                       }}
                     >
                       Food
@@ -101,7 +178,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2 "
                       onClick={(e) => {
-                        setCategory(Landscapes);
+                        setCategory(landscapes);
                       }}
                     >
                       Landscapes
@@ -110,7 +187,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2"
                       onClick={(e) => {
-                        setCategory(SciFi);
+                        setCategory(scifi);
                       }}
                     >
                       Sci-Fi
@@ -119,7 +196,7 @@ export function ExploreImagesPage() {
                       variant="outline"
                       className="px-6 py-2"
                       onClick={(e) => {
-                        setCategory(Cars);
+                        setCategory(cars);
                       }}
                     >
                       Cars
