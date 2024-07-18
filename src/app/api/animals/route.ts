@@ -1,23 +1,31 @@
 import { kv } from "@vercel/kv";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 // Handler to retrieve animals data
-const getAnimals = async (req: NextApiRequest, res: NextApiResponse) => {
+const getAnimals = async (
+  req: NextRequest | Request,
+  res: NextResponse | Response
+) => {
   try {
     const animalsData = await kv.get("animals");
     if (animalsData) {
-      res.status(200).json(JSON.parse(animalsData as string));
+      return NextResponse.json(JSON.parse(animalsData as string));
     } else {
-      res.status(404).json({ error: "Animals data not found" });
+      return NextResponse.json({ error: "Animals data not found" });
+      // return new NextResponse( message : {})
     }
   } catch (error) {
     console.error("Error retrieving animals data:", error);
-    res.status(500).json({ error: "Failed to retrieve animals data" });
+    return NextResponse.json({ error: "Failed to retrieve animals data" });
   }
 };
 
 // Handler to store animals data
-const postAnimals = async (req: NextApiRequest, res: NextApiResponse) => {
+const postAnimals = async (
+  req: NextRequest | Request,
+  res: NextResponse | Response
+) => {
   const animals = [
     {
       name: "pig",
@@ -55,20 +63,23 @@ const postAnimals = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     await kv.set("animals", JSON.stringify(animals));
-    res.status(200).json({ message: "Animals data stored successfully" });
+    return NextResponse.json({ message: "Animals data stored successfully" });
   } catch (error) {
     console.error("Error storing animals data:", error);
-    res.status(500).json({ error: "Failed to store animals data" });
+    return NextResponse.json({ error: "Failed to store animals data" });
   }
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
+export default async function handler(
+  req: NextRequest | Request,
+  res: NextResponse | Response
+) {
+  if (req.method === "GET") {
     await getAnimals(req, res);
-  } else if (req.method === 'POST') {
+  } else if (req.method === "POST") {
     await postAnimals(req, res);
-  } else {
-    res.setHeader('Allow', ['GET', 'POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    // } else {
+    //   res.setHeader('Allow', ['GET', 'POST']);
+    //   res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
