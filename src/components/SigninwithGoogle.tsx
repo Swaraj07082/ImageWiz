@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { ChromeIcon } from "lucide-react";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  User,
+} from "firebase/auth";
 import { auth, db } from "@/app/services/firebase";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { doc, setDoc } from "firebase/firestore";
@@ -11,7 +16,7 @@ import AvatarDropdown from "./AvatarDropdown";
 export default function SigninwithGoogle() {
   const [user, setuser] = useAuthState(auth);
 
-  const saveHistory = async () => {
+  const saveHistory = async (user: User) => {
     const generationHistory = {
       timestamp: new Date().toISOString(),
     };
@@ -35,12 +40,16 @@ export default function SigninwithGoogle() {
   const provider = new GoogleAuthProvider();
   async function googleLogin() {
     const result = await signInWithPopup(auth, provider);
-    saveHistory();
   }
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        saveHistory(user);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
   return (
     <>
       {user ? (
