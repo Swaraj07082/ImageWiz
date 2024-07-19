@@ -10,9 +10,32 @@ import AvatarDropdown from "./AvatarDropdown";
 
 export default function SigninwithGoogle() {
   const [user, setuser] = useAuthState(auth);
+
+  const saveHistory = async () => {
+    const generationHistory = {
+      timestamp: new Date().toISOString(),
+    };
+    try {
+      const response = await fetch("/api/saveHistory", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          UserName: user?.displayName,
+          userId: user?.uid,
+          generationHistory,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const provider = new GoogleAuthProvider();
   async function googleLogin() {
     const result = await signInWithPopup(auth, provider);
+    saveHistory();
   }
   useEffect(() => {
     console.log(user);
@@ -21,18 +44,21 @@ export default function SigninwithGoogle() {
   return (
     <>
       {user ? (
-        <AvatarDropdown
-          src={user.photoURL}
-          email={user.email}
-          name={user.displayName}
-        />
+        <div className="flex gap-x-5">
+          <AvatarDropdown
+            src={user.photoURL}
+            email={user.email}
+            name={user.displayName}
+          />
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        </div>
       ) : (
         <Button
           className="w-full bg-[#4285F4] text-white"
           variant="outline"
           onClick={() => googleLogin()}
         >
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center ">
             <ChromeIcon className="w-5 h-5 mr-2" />
             Login with Google
           </div>

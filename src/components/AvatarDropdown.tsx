@@ -13,6 +13,7 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { auth } from "@/app/services/firebase";
+import { User } from "firebase/auth";
 
 interface Props {
   src: string | null;
@@ -35,13 +36,13 @@ export default function AvatarDropdown({ src, email, name }: Props) {
             <div className="text-sm text-muted-foreground">{email}</div>
           </div>
         </div>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        {/* <DropdownMenuSeparator /> */}
+        {/* <DropdownMenuItem>
           <Link href="#" className="flex items-center gap-2" prefetch={false}>
             <div className="h-4 w-4" />
-            <span onClick={() => auth.signOut()}>Sign out</span>
+            <span onClick={() => auth?.>Sign out</span>
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );
