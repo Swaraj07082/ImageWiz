@@ -16,10 +16,14 @@ import AvatarDropdown from "./AvatarDropdown";
 export default function SigninwithGoogle() {
   const [user, setuser] = useAuthState(auth);
 
+  console.log(user?.uid);
+
   const saveHistory = async (user: User) => {
     const generationHistory = {
       timestamp: new Date().toISOString(),
     };
+
+    const images_created = 0;
     try {
       const response = await fetch("/api/saveHistory", {
         method: "POST",
@@ -30,6 +34,7 @@ export default function SigninwithGoogle() {
           UserName: user?.displayName,
           userId: user?.uid,
           generationHistory,
+          images_created,
         }),
       });
     } catch (error) {

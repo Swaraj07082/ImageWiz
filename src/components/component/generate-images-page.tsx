@@ -2,13 +2,19 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import Image from "next/image";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/app/services/firebase";
 
 export function GenerateImagesPage() {
   const [prompt, setprompt] = useState<string>("");
   const [url, seturl] = useState<string>("placeholder.svg");
   const [loading, setloading] = useState<boolean>(false);
+  const [user, setuser] = useAuthState(auth);
+  const [images_created, setimages_created] = useState<number>(0);
+
+  console.log(user?.uid);
 
   const GenerateImage = () => {
     setloading(true);
@@ -19,12 +25,39 @@ export function GenerateImagesPage() {
     img.onload = () => {
       seturl(newUrl);
       setloading(false);
+      setimages_created(images_created + 1);
+      send_updated_images_created();
     };
   };
 
+  useEffect(() => {
+    const getUserData = async () => {
+      const response = await fetch(`/api/userData?uid=${user?.uid}`);
+      const data = await response.json();
+
+      console.log(data);
+      const { userData } = data;
+
+      setimages_created(userData?.images_created);
+    };
+
+    getUserData();
+  }, [user?.uid]);
+
+  console.log(images_created);
   console.log(url);
 
   console.log(prompt);
+
+  const send_updated_images_created = async () => {
+    const response = await fetch("/api/userData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ images_created }),
+    });
+  };
   return (
     <div className="flex flex-col h-screen">
       <main className="flex-1 bg-background">
