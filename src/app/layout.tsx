@@ -7,6 +7,7 @@ import { Space_Mono } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontHeading = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function Layout({
       >
         <Navbar />
         {children}
+        <Toaster />
       </body>
     </html>
   );

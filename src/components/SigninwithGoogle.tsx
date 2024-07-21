@@ -33,7 +33,7 @@ export default function SigninwithGoogle() {
         body: JSON.stringify({
           UserName: user?.displayName,
           userId: user?.uid,
-          generationHistory,
+          // generationHistory,
           images_created,
         }),
       });
@@ -58,7 +58,7 @@ export default function SigninwithGoogle() {
   return (
     <>
       {user ? (
-        <div className="flex gap-x-5">
+        <div className="flex gap-x-5 ">
           <AvatarDropdown
             src={user.photoURL}
             email={user.email}
@@ -68,7 +68,7 @@ export default function SigninwithGoogle() {
         </div>
       ) : (
         <Button
-          className="w-full bg-[#4285F4] text-white"
+          className="w-full bg-[#4285F4] text-white "
           variant="outline"
           onClick={() => googleLogin()}
         >

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useState } from "react";
 
@@ -26,122 +26,68 @@ import Image from "next/image";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import SigninwithGoogle from "./SigninwithGoogle";
+import Responsivesheet from "./Responsivesheet";
+import { auth } from "@/app/services/firebase";
+import { toast } from "./ui/use-toast";
 
 export default function Navbar() {
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  console.log(isMobile);
+
+  console.log(auth.currentUser);
+
   return (
     <>
       <nav className="bg-gradient-to-r from-primary to-secondary py-6 px-4 md:px-8">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <ImageIcon className="w-8 h-8 text-primary-foreground" />
+            <ImageIcon className="w-8 h-8 text-primary-foreground max-md: text-3xl" />
             <h1 className="text-3xl font-bold text-primary-foreground">
-              <Link href={"/"}>ImageWiz</Link>
+              <Link href={"/"} className="max-md: text-3xl">
+                ImageWiz
+              </Link>
             </h1>
           </div>
           <div className="flex items-center gap-4">
+            <div className="  md:hidden">
+              <Responsivesheet isMobile={isMobile} />
+            </div>
             <Link
               href="/generate"
-              className="text-primary-foreground hover:underline hover:text-primary-foreground/80"
+              className=" max-md:hidden text-primary-foreground hover:underline hover:text-primary-foreground/80"
               prefetch={false}
             >
               Generate
             </Link>
             <Link
-              href="/explore"
-              className="text-primary-foreground hover:underline hover:text-primary-foreground/80"
+              href={auth.currentUser ? "/explore" : "/"}
+              className=" max-md:hidden  text-primary-foreground hover:underline hover:text-primary-foreground/80"
               prefetch={false}
+              onClick={() => {
+                if (auth.currentUser == null) {
+                  toast({
+                    title: "Login needed. ",
+                  });
+                }
+              }}
             >
               Explore
             </Link>
-            <div>
-              {/* {showUserMenu && ( */}
-              {/* <Dialog>
-                <DialogContent>
-                  {" "}
-                  <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-                    <div className="max-w-sm rounded-lg shadow-lg bg-white p-6 space-y-6 border border-gray-200 dark:border-gray-700">
-                      <div className="space-y-2 text-center">
-                        <h1 className="text-3xl font-bold">Login</h1>
-                        <p className="text-zinc-500 dark:text-zinc-400">
-                          By logging in, you accept our
-                          <Link
-                            href="#"
-                            className="text-blue-500 hover:text-blue-700"
-                            prefetch={false}
-                          >
-                            terms
-                          </Link>
-                          and
-                          <Link
-                            href="#"
-                            className="text-blue-500 hover:text-blue-700"
-                            prefetch={false}
-                          >
-                            privacy policy
-                          </Link>
-                          .
-                        </p>
-                      </div>
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="email">Email</Label>
-                          <Input
-                            id="email"
-                            placeholder="m@example.com"
-                            required
-                            type="email"
-                          />
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <hr className="flex-grow border-zinc-200 dark:border-zinc-700" />
-                          <span className="text-zinc-400 dark:text-zinc-300 text-sm">
-                            OR
-                          </span>
-                          <hr className="flex-grow border-zinc-200 dark:border-zinc-700" />
-                        </div>
-                        <Button
-                          className="w-full bg-[#4285F4] text-white"
-                          variant="outline"
-                        >
-                          <div className="flex items-center justify-center">
-                            <ChromeIcon className="w-5 h-5 mr-2" />
-                            Login with Google
-                          </div>
-                        </Button>
-                        <Button
-                          className="w-full bg-black text-white"
-                          variant="outline"
-                        >
-                          <div className="flex items-center justify-center">
-                            <AppleIcon className="w-5 h-5 mr-2" />
-                            Login with Apple
-                          </div>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-          
-                </DialogContent>
-                <DialogTrigger>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full border border-primary-foreground/50 w-10 h-10"
-                    onClick={() => setShowUserMenu(!showUserMenu)}
-                  >
-                    <Image
-                      src="/placeholder.svg"
-                      width="40"
-                      height="40"
-                      className="rounded-full"
-                      alt="Avatar"
-                    />
-                    <span className="sr-only">Toggle user menu</span>
-                  </Button>
-                </DialogTrigger>
-              </Dialog> */}
-              {/* )} */}
+            <div className=" max-md:hidden">
               <SigninwithGoogle />
             </div>
           </div>

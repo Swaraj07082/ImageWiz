@@ -15,9 +15,23 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const POST = async (req: NextRequest | Request) => {
-  const body = await req.json();
-  const uid = req.url.slice(39);
-  console.log(uid);
+  const { uid, images_created } = await req.json();
+  // const uid = req.url.slice(39);
+  // console.log(uid);
 
-  console.log(body);
+  // console.log(body);
+
+  console.log(images_created);
+  const userData = await kv.get(`user:${uid}`);
+  const { UserName, userId }: any = userData;
+  const updatedData = {
+    UserName,
+    userId: uid,
+    // generationHistory,
+    images_created: images_created,
+  };
+  await kv.set(`user:${uid}`, updatedData);
+
+  console.log(updatedData);
+  return new NextResponse("Data updated successfully", { status: 200 });
 };

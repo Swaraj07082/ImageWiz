@@ -10,6 +10,8 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { auth } from "@/app/services/firebase";
+import { toast } from "../ui/use-toast";
 
 export function LandingPage() {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -33,7 +35,20 @@ export function LandingPage() {
                 ideas to life.
               </p>
               <div className="flex gap-4">
-                <Button className="flex-1">Get Started</Button>
+                <Button
+                  className="flex-1"
+                  onClick={() => {
+                    if (auth.currentUser == null) {
+                      toast({
+                        title: "Login needed.",
+                      });
+                    }
+                  }}
+                >
+                  <Link href={auth.currentUser ? "/generate" : "/"}>
+                    Get Started
+                  </Link>
+                </Button>
                 <Button variant="outline" className="flex-1">
                   Learn More
                 </Button>
@@ -165,21 +180,7 @@ export function LandingPage() {
               className="hover:underline hover:text-primary-foreground/80"
               prefetch={false}
             >
-              Privacy Policy
-            </Link>
-            <Link
-              href="#"
-              className="hover:underline hover:text-primary-foreground/80"
-              prefetch={false}
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="#"
-              className="hover:underline hover:text-primary-foreground/80"
-              prefetch={false}
-            >
-              Contact Us
+              About me
             </Link>
           </div>
         </div>
