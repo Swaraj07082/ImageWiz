@@ -62,7 +62,12 @@ export default function SigninwithGoogle() {
             email={user.email}
             name={user.displayName}
           />
-          <Button onClick={() => auth.signOut()} className=" max-md:w-fit max-md:text-[12px]">Logout</Button>
+          <Button
+            onClick={() => auth.signOut()}
+            className=" max-md:w-fit max-md:text-[12px]"
+          >
+            Logout
+          </Button>
         </div>
       ) : (
         <Button
