@@ -258,7 +258,7 @@ export function ExploreImagesPage() {
                   priority
                   loading="eager"
                 />
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="icon"
                   className={`absolute top-2 right-2 ${
@@ -273,7 +273,7 @@ export function ExploreImagesPage() {
                     className={`w-4 h-4 ${liked ? "fill-red-500" : ""}`}
                   />
                   <span className="sr-only">Like</span>
-                </Button>
+                </Button> */}
               </div>
             ))}
           </div>
@@ -283,7 +283,7 @@ export function ExploreImagesPage() {
         <div className="max-w-6xl mx-auto flex items-center justify-between text-muted-foreground">
           <p>&copy; 2023 AI Image Generator. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link href="#" className="hover:underline" prefetch={false}>
+            <Link href="/aboutme" className="hover:underline" prefetch={false}>
               About me
             </Link>
           </div>
@@ -307,7 +307,7 @@ export function ExploreImagesPage() {
                 A beautiful AI-generated image.
               </p>
               <div className="flex items-center gap-2 mt-2">
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="icon"
                   className={`${liked ? "text-red-500" : ""}`}
@@ -324,16 +324,12 @@ export function ExploreImagesPage() {
                   }`}
                 >
                   {liked ? "Liked" : "Like"}
-                </span>
+                </span> */}
               </div>
             </div>
             <div className="mt-4 flex justify-end gap-2">
               <Button variant="outline" onClick={handleCloseDialog}>
                 Close
-              </Button>
-              <Button>
-                <DownloadIcon className="w-4 h-4 mr-2" />
-                Download
               </Button>
             </div>
           </DialogContent>

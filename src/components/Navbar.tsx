@@ -74,16 +74,9 @@ export default function Navbar() {
               Generate
             </Link>
             <Link
-              href={auth.currentUser ? "/explore" : "/"}
+              href={"/explore"}
               className=" max-md:hidden  text-primary-foreground hover:underline hover:text-primary-foreground/80"
               prefetch={false}
-              onClick={() => {
-                if (auth.currentUser == null) {
-                  toast({
-                    title: "Login needed. ",
-                  });
-                }
-              }}
             >
               Explore
             </Link>

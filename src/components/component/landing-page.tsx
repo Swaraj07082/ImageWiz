@@ -14,11 +14,9 @@ import { auth } from "@/app/services/firebase";
 import { toast } from "../ui/use-toast";
 
 export function LandingPage() {
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  // const [showUserMenu, setShowUserMenu] = useState(false);
 
-  const userImages = "hello";
-
-  const [liked, setLiked] = useState<boolean>(false);
+  // const userImages = "hello";
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -35,138 +33,58 @@ export function LandingPage() {
                 ideas to life.
               </p>
               <div className="flex gap-4">
-                <Button
-                  className="flex-1"
-                  onClick={() => {
-                    if (auth.currentUser == null) {
-                      toast({
-                        title: "Login needed.",
-                      });
-                    }
-                  }}
-                >
-                  <Link href={auth.currentUser ? "/generate" : "/"}>
-                    Get Started
-                  </Link>
+                <Button className="flex-1 ">
+                  <Link href={"/generate"}>Get Started</Link>
                 </Button>
-                <Button variant="outline" className="flex-1">
-                  Learn More
+                <Button variant="outline" className="flex-1 ">
+                  <Link href={"/aboutme"}>About me</Link>
                 </Button>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div
-                className="bg-muted rounded-lg overflow-hidden shadow-lg relative cursor-pointer"
-                onClick={() => setLiked(!liked)}
-              >
+              <div className="bg-muted h-52   rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
                 <Image
-                  src="/placeholder.svg"
+                  src="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/k/3/y/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhfhkzguyrz.jpeg?q=90&crop=false"
                   alt="Generated Image"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto"
+                  // width={300}
+                  // height={200}
+                  fill
+                  className="w-full h-auto object-cover"
                 />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`absolute top-2 right-2 ${
-                    liked ? "text-red-500" : ""
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLiked(!liked);
-                  }}
-                >
-                  <HeartIcon
-                    className={`w-4 h-4 ${liked ? "fill-red-500" : ""}`}
-                  />
-                  <span className="sr-only">Like</span>
-                </Button>
               </div>
-              <div
-                className="bg-muted rounded-lg overflow-hidden shadow-lg relative cursor-pointer"
-                onClick={() => setLiked(!liked)}
-              >
+
+              <div className="bg-muted h-52   rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
                 <Image
-                  src="/placeholder.svg"
+                  src="https://wallpapers.com/images/featured/aesthetic-pictures-hv6f88paqtseqh92.jpg"
                   alt="Generated Image"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto"
+                  fill
+                  className="w-full h-auto object-cover"
                 />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`absolute top-2 right-2 ${
-                    liked ? "text-red-500" : ""
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLiked(!liked);
-                  }}
-                >
-                  <HeartIcon
-                    className={`w-4 h-4 ${liked ? "fill-red-500" : ""}`}
-                  />
-                  <span className="sr-only">Like</span>
-                </Button>
               </div>
-              <div
-                className="bg-muted rounded-lg overflow-hidden shadow-lg relative cursor-pointer"
-                onClick={() => setLiked(!liked)}
-              >
+
+              <div className="bg-muted h-52   rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
                 <Image
-                  src="/placeholder.svg"
+                  src="https://images4.alphacoders.com/134/1347180.png"
                   alt="Generated Image"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto"
+                  // width={300}
+                  // height={200}
+                  fill
+                  className="w-full h-auto object-cover"
                 />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`absolute top-2 right-2 ${
-                    liked ? "text-red-500" : ""
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLiked(!liked);
-                  }}
-                >
-                  <HeartIcon
-                    className={`w-4 h-4 ${liked ? "fill-red-500" : ""}`}
-                  />
-                  <span className="sr-only">Like</span>
-                </Button>
               </div>
-              <div
-                className="bg-muted rounded-lg overflow-hidden shadow-lg relative cursor-pointer"
-                onClick={() => setLiked(!liked)}
-              >
+
+              <div className="bg-muted h-52   rounded-lg overflow-hidden shadow-lg relative cursor-pointer">
                 <Image
-                  src="/placeholder.svg"
+                  src="https://i.pinimg.com/236x/b6/d3/17/b6d3177a526831702d0ecbd96b9a9b6f.jpg"
                   alt="Generated Image"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto"
+                  // width={300}
+                  // height={200}
+                  fill
+                  className="w-full h-auto object-cover"
                 />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`absolute top-2 right-2 ${
-                    liked ? "text-red-500" : ""
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setLiked(!liked);
-                  }}
-                >
-                  <HeartIcon
-                    className={`w-4 h-4 ${liked ? "fill-red-500" : ""}`}
-                  />
-                  <span className="sr-only">Like</span>
-                </Button>
               </div>
+
+              {/* </div> */}
             </div>
           </div>
         </div>
@@ -176,7 +94,7 @@ export function LandingPage() {
           <p>&copy; 2023 Imaginator. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link
-              href="#"
+              href="/aboutme"
               className="hover:underline hover:text-primary-foreground/80"
               prefetch={false}
             >
