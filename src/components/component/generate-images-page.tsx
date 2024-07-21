@@ -1,14 +1,12 @@
 "use client";
-import Link from "next/link";
+import { auth } from "@/app/services/firebase";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/app/services/firebase";
 import { toast } from "../ui/use-toast";
-import { ToastAction } from "../ui/toast";
-import { saveAs } from "file-saver";
 
 export function GenerateImagesPage() {
   const [prompt, setprompt] = useState<string>("");
@@ -29,7 +27,7 @@ export function GenerateImagesPage() {
       }
     };
     getUserData();
-  }, [user?.uid]);
+  }, [user?.uid, images_created]);
 
   const GenerateImage = async () => {
     if (auth.currentUser == null) {

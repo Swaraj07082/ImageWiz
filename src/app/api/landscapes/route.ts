@@ -1,16 +1,14 @@
 import { kv } from "@vercel/kv";
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
   try {
     const landscapeData = await kv.get("landscape");
     if (landscapeData) {
-      // return NextResponse.json(JSON.parse(animalsData as string));
       return NextResponse.json(landscapeData);
     } else {
       return NextResponse.json({ error: "landscape data not found" });
-      // return new NextResponse( message : {})
     }
   } catch (error) {
     console.error("Error retrieving landscape data:", error);

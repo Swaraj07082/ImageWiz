@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { ChromeIcon } from "lucide-react";
+import { auth } from "@/app/services/firebase";
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
   User,
 } from "firebase/auth";
-import { auth, db } from "@/app/services/firebase";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { doc, setDoc } from "firebase/firestore";
+import { ChromeIcon } from "lucide-react";
+import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AvatarDropdown from "./AvatarDropdown";
+import { Button } from "./ui/button";
 
 export default function SigninwithGoogle() {
   const [user, setuser] = useAuthState(auth);

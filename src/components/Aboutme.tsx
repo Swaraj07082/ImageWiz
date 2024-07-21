@@ -1,8 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/CHqQ4yb2RKG
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   GitHubLogoIcon,
@@ -144,27 +139,7 @@ export default function Aboutme() {
   );
 }
 
-function AwardIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
-      <circle cx="12" cy="8" r="6" />
-    </svg>
-  );
-}
-
-function BriefcaseIcon(props) {
+function BriefcaseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -184,7 +159,7 @@ function BriefcaseIcon(props) {
   );
 }
 
-function CodepenIcon(props) {
+function CodepenIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -207,7 +182,7 @@ function CodepenIcon(props) {
   );
 }
 
-function DatabaseIcon(props) {
+function DatabaseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -228,7 +203,7 @@ function DatabaseIcon(props) {
   );
 }
 
-function EraserIcon(props) {
+function EraserIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -249,7 +224,7 @@ function EraserIcon(props) {
   );
 }
 
-function FastForwardIcon(props) {
+function FastForwardIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -269,7 +244,7 @@ function FastForwardIcon(props) {
   );
 }
 
-function GitGraphIcon(props) {
+function GitGraphIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -293,7 +268,7 @@ function GitGraphIcon(props) {
   );
 }
 
-function GraduationCapIcon(props) {
+function GraduationCapIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -314,7 +289,7 @@ function GraduationCapIcon(props) {
   );
 }
 
-function HandIcon(props) {
+function HandIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -336,7 +311,7 @@ function HandIcon(props) {
   );
 }
 
-function NetworkIcon(props) {
+function NetworkIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -359,7 +334,7 @@ function NetworkIcon(props) {
   );
 }
 
-function PaletteIcon(props) {
+function PaletteIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -382,7 +357,7 @@ function PaletteIcon(props) {
   );
 }
 
-function PiIcon(props) {
+function PiIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -403,7 +378,7 @@ function PiIcon(props) {
   );
 }
 
-function Redo2Icon(props) {
+function Redo2Icon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -423,7 +398,7 @@ function Redo2Icon(props) {
   );
 }
 
-function UserIcon(props) {
+function UserIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -443,7 +418,7 @@ function UserIcon(props) {
   );
 }
 
-function WindIcon(props) {
+function WindIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -464,7 +439,7 @@ function WindIcon(props) {
   );
 }
 
-function XIcon(props) {
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

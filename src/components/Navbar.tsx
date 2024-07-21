@@ -3,32 +3,12 @@ import React, { useEffect } from "react";
 
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { auth } from "@/app/services/firebase";
 import { ImageIcon } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
-import { Label } from "./ui/label";
-import { Input } from "./ui/input";
-import SigninwithGoogle from "./SigninwithGoogle";
 import Responsivesheet from "./Responsivesheet";
-import { auth } from "@/app/services/firebase";
-import { toast } from "./ui/use-toast";
+import SigninwithGoogle from "./SigninwithGoogle";
 
 export default function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState<boolean>(false);

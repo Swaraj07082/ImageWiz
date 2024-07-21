@@ -1,16 +1,14 @@
 import { kv } from "@vercel/kv";
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
   try {
     const fashionData = await kv.get("fashion");
     if (fashionData) {
-      // return NextResponse.json(JSON.parse(animalsData as string));
       return NextResponse.json(fashionData);
     } else {
       return NextResponse.json({ error: "fashion data not found" });
-      // return new NextResponse( message : {})
     }
   } catch (error) {
     console.error("Error retrieving fashion data:", error);
