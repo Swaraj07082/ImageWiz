@@ -31,7 +31,7 @@ export default function SigninwithGoogle() {
         body: JSON.stringify({
           UserName: user?.displayName,
           userId: user?.uid,
-          // generationHistory,
+          generationHistory,
           images_created,
         }),
       });
