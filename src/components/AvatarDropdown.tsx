@@ -14,7 +14,7 @@ export default function AvatarDropdown({ src, email, name }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="h-10 w-10 cursor-pointer">
+        <Avatar className="h-10 w-10 cursor-pointer max-[400px]:hidden">
           <AvatarImage src={src ?? ""} />
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>

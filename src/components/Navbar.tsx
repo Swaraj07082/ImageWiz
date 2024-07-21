@@ -1,9 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
 
-import { useState } from "react";
-
-
+import React, { useState } from "react";
 import { auth } from "@/app/services/firebase";
 import { ImageIcon } from "lucide-react";
 import Link from "next/link";
@@ -12,60 +9,51 @@ import SigninwithGoogle from "./SigninwithGoogle";
 
 export default function Navbar() {
   const [showUserMenu, setShowUserMenu] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  console.log(isMobile);
-
-  console.log(auth.currentUser);
+  // const [isMobile, setIsMobile] = useState<boolean>(false);
 
   return (
     <>
       <nav className="bg-gradient-to-r from-primary to-secondary py-6 px-4 md:px-8">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <ImageIcon className="w-8 h-8 text-primary-foreground max-md: text-3xl" />
+            <ImageIcon className="w-8 h-8 text-primary-foreground max-md:text-2xl" />
             <h1 className="text-3xl font-bold text-primary-foreground">
-              <Link href={"/"} className="max-md: text-3xl">
+              <Link href={"/"} className="max-md:text-2xl">
                 ImageWiz
               </Link>
             </h1>
           </div>
           <div className="flex items-center gap-4">
-            <div className="  md:hidden">
-              <Responsivesheet isMobile={isMobile} />
+            <div className="md:hidden">
+              <Responsivesheet />
             </div>
             <Link
               href="/generate"
-              className=" max-md:hidden text-primary-foreground hover:underline hover:text-primary-foreground/80"
+              className={`max-md:hidden text-primary-foreground hover:underline hover:text-primary-foreground/80       }`}
               prefetch={false}
             >
               Generate
             </Link>
             <Link
               href={"/explore"}
-              className=" max-md:hidden  text-primary-foreground hover:underline hover:text-primary-foreground/80"
+              className={`max-md:hidden  text-primary-foreground hover:underline hover:text-primary-foreground/80`}
               prefetch={false}
             >
               Explore
             </Link>
-            <div className=" max-md:hidden">
+            <div>
               <SigninwithGoogle />
             </div>
           </div>
         </div>
       </nav>
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .md\:hidden {
+            display: block;
+          }
+        }
+      `}</style>
     </>
   );
 }

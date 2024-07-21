@@ -1,10 +1,13 @@
-import Aboutme from '@/components/Aboutme'
+import dynamic from 'next/dynamic'
 import React from 'react'
 
-export default function page() {
+const AboutMe = dynamic(() => import('../../components/component/AboutMe'), { ssr: false })
+
+
+export default function Page() {
   return (
     <>
-    <Aboutme/>
+    <AboutMe/>
     </>
   )
 }

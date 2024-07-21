@@ -6,7 +6,7 @@ import {
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 
-export default function Aboutme() {
+export default function AboutMe() {
   return (
     <div className="flex flex-col min-h-dvh">
       <section className="bg-muted py-12 md:py-20 lg:py-24">

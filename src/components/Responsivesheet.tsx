@@ -3,11 +3,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import SigninwithGoogle from "./SigninwithGoogle";
 
-interface Props {
-  isMobile: boolean;
-}
-
-export default function Responsivesheet({ isMobile }: Props) {
+export default function Responsivesheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -33,7 +29,7 @@ export default function Responsivesheet({ isMobile }: Props) {
                 <span>Generate</span>
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
-              {isMobile && <SigninwithGoogle />}
+              {/* <SigninwithGoogle /> */}
             </div>
           </div>
         </div>
